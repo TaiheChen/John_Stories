@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %} {{story["title"]}}'s Details {% endblock %} 
+
+{% block content %} 
+    <div style="float:left; border-style:double;">
+        <img src= "{{url_for('static', filename = story.id|string+".png")}}" height="350"  alt="Not Available"><br>
+    </div> 
+    <div style="float:left; margin:10px; width: 100%">
+        <h1 class="title">{{ story.title }}</h1>
+        <p>{{ story.content }}</p>
+        <p><b>Views: &nbsp;</b> {{views}}</p>
+        <p><b>Downloads: &nbsp;</b> {{downloads}}</p>
+        <hr> 
+
+        <!-- Error Message  -->
+        {% if message %}
+            <span style="background-color:tomato">
+            {{ message }}
+            </span>
+            <br>
+        {% endif %}
+    </div>
+    <div style="float: left;width: 100%">
+        <a href="{{ url_for('download_file', story_id=story.id) }}" target="_blank">
+            <button value="Download" style="font-size: 20px;border-radius: 12px;">Download the Story</button>
+        </a>
+        <hr> 
+    </div>
+    <div style="float:left; border-style:double;">
+        <img src= "{{url_for('static', filename = imgsrc)}}" height="350"  alt="Not Available"><br>
+        <hr> 
+    </div>
+
+{% endblock %}

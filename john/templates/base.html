@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock %} - John's Stories</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script>
+        document.oncontextmenu=new Function("event.returnValue=false;");
+        document.onselectstart=new Function("event.returnValue=false;");
+    </script>
+</head>
+<body>
+    <div>
+        <ul style="list-style-type: none;float: right;font-size: large;">
+            <li style="display:inline"><a href="{{url_for('homepage')}}">Home</a></li>
+            <li style="display:inline"><a href="{{url_for('about')}}">About</a></li>
+        </ul>
+    </div>
+    <h1 id="title"> {% block heading %} {% endblock %} </h1>
+    <div id="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>

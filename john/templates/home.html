@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block heading %}
+<center>John's Stories</center>
+{% endblock %}
+
+{% block content%}
+  <table>
+    <tr>
+      <th>Image</th>
+      <th>Title</th>
+    </tr>
+    {% for story in stories %}
+    <tr>
+        <td>
+          <img src= "{{url_for('static', filename = story.id|string+".png")}}" height="100"  alt="Not Available">
+        </td>
+        <td>
+            <a href="{{url_for('story_details', story_id = story.id)}}">
+                {{ story.title }}
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

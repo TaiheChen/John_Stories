@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+Submit Page
+{% endblock %}
+
+{% block heading %}
+Submit a new story
+{% endblock %}
+
+{% block content %}
+
+{% if message %}
+    {{ message }}
+{% endif %}
+
+{% if form %}
+<form action="{{url_for('submit')}}" method="POST" style="padding:5px;">
+    <!-- Title Field -->
+    {{ form.title.label }}: <br>
+    {{ form.title }}
+    <br>
+    {% if form.title.errors %}
+        {% for error in form.title.errors %}
+        <b style="color:tomato;"> {{ error }} </b> 
+        <br>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Content Field -->
+    {{ form.content.label }}: <br>
+    {{ form.content }}
+    <br>
+    {% if form.content.errors %}
+        {% for error in form.content.errors %}
+        <b style="color:tomato;"> {{ error }} </b> 
+        <br>
+        {% endfor %}
+    {% endif %}
+
+    
+    {{ form.csrf_token }}
+    {{ form.submit }}
+</form> 
+{% endif %}
+{% endblock %}
